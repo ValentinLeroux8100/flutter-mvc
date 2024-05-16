@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:untitled/screens/home_screen.dart';
 import 'package:untitled/screens/register_screen.dart';
 import 'package:provider/provider.dart';
+import 'package:untitled/screens/user_screen.dart';
 import 'package:untitled/screens/users_screen.dart';
 
 import 'screens/login_screen.dart';
@@ -38,6 +39,7 @@ class MainApp extends StatelessWidget {
         '/login': (context) => LoginScreen(),
         '/profile': (context) => const ProfileScreen(),
         '/users': (context) => const UsersScreen(),
+        '/user': (context) => const UserScreen()
       },
     );
   }

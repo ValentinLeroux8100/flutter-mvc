@@ -35,7 +35,7 @@ class _UsersScreen extends State<UsersScreen> {
           } else if (snapshot.hasError) {
             return Center(child: Text('Erreur: ${snapshot.error}'));
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return const Center(child: Text('Aucun message trouvé.'));
+            return const Center(child: Text('Aucun utilisateur trouvé.'));
           } else {
             List<UserModel> users = snapshot.data!;
             return ListView.builder(itemCount: users.length,
@@ -44,6 +44,11 @@ class _UsersScreen extends State<UsersScreen> {
                 return ListTile(
                   title: Text("${userModel.lastName} ${userModel.firstName}"),
                   onTap: () {
+                    Navigator.pushNamed(
+                      context,
+                      '/user',
+                      arguments: userModel.id
+                    );
                   },
                 );
               },

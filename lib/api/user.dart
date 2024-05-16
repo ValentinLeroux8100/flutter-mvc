@@ -51,14 +51,26 @@ Future<http.Response> login(String email, String password) async {
   }
 }
 
-  Future<List<UserModel>> fetchUsers() async {
-    final response = await http.get(Uri.parse('https://s3-5002.nuage-peda.fr/users'));
-    if (response.statusCode == 200) {
-      List<dynamic> body = json.decode(response.body);
-      List<UserModel> users =
-      body.map((dynamic item) => UserModel.fromJson(item)).toList();
-      return users;
-    } else {
-      throw Exception('Failed to load users');
-    }
+Future<List<UserModel>> fetchUsers() async {
+  final response = await http.get(Uri.parse('https://s3-5002.nuage-peda.fr/users'));
+  if (response.statusCode == 200) {
+    List<dynamic> body = json.decode(response.body);
+    List<UserModel> users =
+    body.map((dynamic item) => UserModel.fromJson(item)).toList();
+    return users;
+  } else {
+    throw Exception('Failed to load users');
   }
+}
+
+Future<UserModel> getUserById(String id) async {
+  final response = await http.get(Uri.parse('https://s3-5002.nuage-peda.fr/users/${id}'));
+
+  if (response.statusCode == 200) {
+    dynamic body = json.decode(response.body);
+    UserModel user = UserModel.fromJson(body);
+    return user;
+  } else {
+    throw Exception('Failed to load user');
+  }
+}
