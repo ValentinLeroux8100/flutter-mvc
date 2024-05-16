@@ -240,6 +240,14 @@ class _RegisterFormState extends State<RegisterForm> {
               onPressed: _agreeToTerms ? _submitForm : null,
               child: Center(child: Text('S\'inscrire')),
             ),
+            ElevatedButton(
+              onPressed: (){Navigator.pushNamed(
+                context,
+                '/login',
+              );
+                },
+              child: Center(child: Text('Se connecter')),
+            ),
           ],
         ),
       ),
