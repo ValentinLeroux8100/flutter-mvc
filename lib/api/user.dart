@@ -1,6 +1,8 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import '../model/user_model.dart';
+
 Future<int> registerUser(String firstName, String lastName, String email,
     String password, List<String> roles) async {
   var url = Uri.parse('https://s3-5002.nuage-peda.fr/users');
@@ -48,3 +50,15 @@ Future<http.Response> login(String email, String password) async {
     throw Exception('Failed to login: ${response.reasonPhrase}');
   }
 }
+
+  Future<List<UserModel>> fetchUsers() async {
+    final response = await http.get(Uri.parse('https://s3-5002.nuage-peda.fr/users'));
+    if (response.statusCode == 200) {
+      List<dynamic> body = json.decode(response.body);
+      List<UserModel> users =
+      body.map((dynamic item) => UserModel.fromJson(item)).toList();
+      return users;
+    } else {
+      throw Exception('Failed to load users');
+    }
+  }

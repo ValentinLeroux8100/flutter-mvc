@@ -50,6 +50,16 @@ class MyScaffold extends StatelessWidget {
             },
           ),
         ],
+        leading: IconButton(
+          icon: Icon(
+              Icons.menu,
+              color: Colors.white),
+          onPressed: () {
+            Navigator.pushNamed(
+              context,
+              '/users',
+            );}
+        ),
       ),
       backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
       body: body,
@@ -57,6 +67,7 @@ class MyScaffold extends StatelessWidget {
         onPressed: null,
         child: const Icon(Icons.add),
       ),
+
     );
   }
 }
